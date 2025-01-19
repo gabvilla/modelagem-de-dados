@@ -41,3 +41,22 @@ insert into works_on values (123456789, 1, 32.5),
                             (567891234, 3, 40),
                             (345678912, 10, 20),
                             (678912345, 20, 20);
+						
+-- gerente e seu departamento
+select Ssn, Fname, Dname from employee e, department d where (e.Ssn = d.Mgr_ssn);
+
+-- dados dos dependentes
+select Fname, Dependent_name, Relationship from employee, dependent where Essn = Ssn;
+
+-- dados de employee por nome
+select Bdate, Address from employee 
+	where Fname = 'John' and Minit = 'B' and Lname = 'Smith';
+
+-- recuperando departamento específico
+select * from department where Dname = 'Research';
+
+-- recuperando employees de um departamento
+select Fname, Lname, Address from employee, department
+	where Dname = 'Research' and Dnumber = Dno;
+    
+select Pname, Essn, Fname, Hours from project, works_on, employee where Pnumber = Pno and Essn = Ssn;
