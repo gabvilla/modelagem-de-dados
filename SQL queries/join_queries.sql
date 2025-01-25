@@ -30,3 +30,15 @@ select concat(Fname, ' ', Lname) Employee_name, Dno Dept_number, Pname Project_n
     inner join project on Pno = Pnumber
     where Pname like 'Product%'
     order by Pnumber;
+    
+select Dname, concat(Fname, ' ', Lname) as Manager, Salary, Round(Salary*0.05, 2) as Bonus from department
+	inner join dept_locations using(Dnumber)
+    inner join employee on Ssn = Mgr_ssn
+    group by Dnumber
+    having count(*) > 1;
+    
+select Dname, concat(Fname, ' ', Lname) as Manager, Salary, Round(Salary*0.05, 2) as Bonus from department
+	inner join dept_locations using(Dnumber)
+    inner join (dependent inner join employee on Ssn = Essn) on Ssn = Mgr_ssn
+    group by Dnumber;
+    
